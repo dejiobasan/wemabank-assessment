@@ -1,13 +1,16 @@
-import { NextResponse } from 'next/server';
-import { Business } from '../../../../lib/mockBusiness';
-import { mockBusiness } from '../../../../lib/mockBusiness';
+import { NextResponse } from "next/server";
+import { Business } from "../../../../lib/mockBusiness";
+import { mockBusiness } from "../../../../lib/mockBusiness";
 
 export async function POST(req: Request) {
   const data: Business = await req.json();
 
-  const userExists = mockBusiness.find(u => u.email === data.BusinessEmail);
+  const userExists = mockBusiness.find((u) => u.email === data.BusinessEmail);
   if (userExists) {
-    return NextResponse.json({ message: 'User already exists' }, { status: 400 });
+    return NextResponse.json(
+      { message: "User already exists" },
+      { status: 400 }
+    );
   }
 
   mockBusiness.push({
@@ -15,8 +18,21 @@ export async function POST(req: Request) {
     email: data.BusinessEmail,
     password: data.password,
     businessName: data.BusinessName,
-    status: data.status
+    businessPhone: data.BusinessPhone,
+    businessCategory: data.BusinessCategory,
+    accountNumber: data.accountNumber,
+    houseNumber: data.houseNumber,
+    street: data.street,
+    city: data.city,
+    state: data.state,
+    contactName: data.contactName,
+    contactPhone: data.contactPhone,
+    contactEmail: data.contactEmail,
+    status: data.status,
   });
 
-  return NextResponse.json({ message: 'User registered successfully' }, { status: 200 });
+  return NextResponse.json(
+    { message: "User registered successfully" },
+    { status: 200 }
+  );
 }
