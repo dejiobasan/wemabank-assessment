@@ -1,5 +1,4 @@
 export interface Business {
-  id: string;
   BusinessName: string;
   BusinessEmail: string;
   BusinessPhone: string;
@@ -17,9 +16,13 @@ export interface Business {
     email: string;
   };
   password: string;
-  status: { default: "pending"; deleted: boolean; verified: boolean };
+  status: string;
 }
 
-export const mockBusiness: Business[] = [
-    
-];
+export const mockBusiness: Array<{
+    id: number;
+    email: string;
+    password: string;
+    businessName: string;
+    status: string;
+}> = [];
