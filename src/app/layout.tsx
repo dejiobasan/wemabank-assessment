@@ -1,4 +1,6 @@
-import './globals.css'
+'use client';
+import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export default function DashboardLayout({
   children,
@@ -9,6 +11,7 @@ export default function DashboardLayout({
     <html lang="en">
       <body>
         <main>{children}</main>
+        <Toaster/>
       </body>
     </html>
   );

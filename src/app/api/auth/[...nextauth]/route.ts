@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { mockBusiness } from "../../../../lib/mockBusiness";
+import { mockBusiness } from "../../../../../lib/mockBusiness";
 import "dotenv/config";
 
 const handler = NextAuth({
@@ -29,7 +29,7 @@ const handler = NextAuth({
   pages: {
     signIn: '/login',
   },
-  secret: process.env.JWT_SECRET,
+  secret: process.env.JWT_SECRET || "secret",
 });
 
 export { handler as GET, handler as POST };

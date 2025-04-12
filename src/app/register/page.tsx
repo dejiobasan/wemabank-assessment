@@ -57,9 +57,35 @@ export default function Page() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Submit logic here
+    if (formData.password !== formData.confirmPassword) {
+      return toast.error("Passwords do not match");
+    }
+
+    const updatedFormData = {
+      ...formData,
+      accountNumber: Number(formData.accountNumber),
+    };
+
+    const body = new FormData();
+    Object.entries(updatedFormData).forEach(([key, value]) => {
+      if (value) {
+        body.append(key, typeof value === "number" ? value.toString() : value);
+      }
+    });
+
+    const res = await fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify(updatedFormData),
+    });
+
+    if (res.ok) {
+      toast.success("Registration successful");
+      router.push("/register/pending");
+    } else {
+      toast.error("Failed to register");
+    }
   };
 
   return (
@@ -100,8 +126,8 @@ export default function Page() {
                   Business Name
                   <input
                     type="text"
-                    name="businessName"
-                    id="businessName"
+                    name="BusinessName"
+                    id="BusinessName"
                     onChange={handleChange}
                     value={formData.BusinessName}
                     className="block w-full text-2xl border rounded-md border-gray-300 bg-gray-50 px-3 py-1.5 placeholder:text-sm focus:outline-none focus:border-blue-500 sm:text-sm/6"
@@ -118,8 +144,8 @@ export default function Page() {
                 >
                   Business Email Address
                   <input
-                    name="businessEmail"
-                    id="businessEmail"
+                    name="BusinessEmail"
+                    id="BusinessEmail"
                     required
                     value={formData.BusinessEmail}
                     type="email"
@@ -137,8 +163,8 @@ export default function Page() {
                 >
                   Business Phone Number
                   <input
-                    name="businessPhone"
-                    id="businessPhone"
+                    name="BusinessPhone"
+                    id="BusinessPhone"
                     onChange={handleChange}
                     value={formData.BusinessPhone}
                     className="block w-full text-2xl border rounded-md border-gray-300 bg-gray-50 px-3 py-1.5 placeholder:text-sm focus:outline-none focus:border-blue-500 sm:text-sm/6"
@@ -154,8 +180,8 @@ export default function Page() {
                 >
                   Business Category
                   <select
-                    name="businessCategory"
-                    id="businessCategory"
+                    name="BusinessCategory"
+                    id="BusinessCategory"
                     onChange={handleChange}
                     value={formData.BusinessCategory}
                     className="block w-full text-2xl border rounded-md border-gray-300 bg-gray-50 px-3 py-1.5 placeholder:text-sm focus:outline-none focus:border-blue-500 sm:text-sm/6"
@@ -201,6 +227,8 @@ export default function Page() {
                         src={URL.createObjectURL(formData.image)}
                         alt="Uploaded Logo"
                         className="max-h-20"
+                        width={100}
+                        height={100}
                       />
                     </div>
                   ) : (

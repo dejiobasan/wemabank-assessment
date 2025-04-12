@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const backgroundColor = "#039BF0";
@@ -41,7 +40,6 @@ export default function Page() {
           alt="arrowImage"
         />
       </div>
-      <Toaster />
     </div>
   );
 }
