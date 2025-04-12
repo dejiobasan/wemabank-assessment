@@ -28,7 +28,6 @@ export async function POST(req: Request) {
     contactName: data.contactName,
     contactPhone: data.contactPhone,
     contactEmail: data.contactEmail,
-    status: data.status,
   });
 
   return NextResponse.json(

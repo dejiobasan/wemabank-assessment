@@ -12,7 +12,6 @@ export interface Business {
   contactPhone: string;
   contactEmail: string;
   password: string;
-  status: string;
 }
 
 export const mockBusiness: Array<{
@@ -30,5 +29,4 @@ export const mockBusiness: Array<{
   contactName: string;
   contactPhone: string;
   contactEmail: string;
-  status: string;
 }> = [];

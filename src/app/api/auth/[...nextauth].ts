@@ -14,9 +14,11 @@ const handler = NextAuth({
       authorize(credentials) {
         if (!credentials) return null;
         const user = mockBusiness.find(
-          u => u.BusinessEmail === credentials.email && u.password === credentials.password
+          u => u.email === credentials.email && u.password === credentials.password
         );
-        if (user) return user;
+        if (user) {
+          return { ...user, id: user.id.toString() };
+        }
         return null;
       },
     }),
