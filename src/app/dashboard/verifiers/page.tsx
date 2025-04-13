@@ -328,7 +328,11 @@ export default function Page() {
             <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
-              className={`text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`${
+                currentPage > 1
+                  ? "text-blue-500 hover:text-blue-400"
+                  : "text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              }`}
             >
               Previous
             </button>
@@ -346,10 +350,16 @@ export default function Page() {
                   {page}
                 </button>
               ))}
+
+            {/* Next Button */}
             <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
-              className={`text-blue-500 hover:text-blue-700 disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`${
+                currentPage < totalPages
+                  ? "text-blue-500 hover:text-blue-400"
+                  : "text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              }`}
             >
               Next
             </button>
