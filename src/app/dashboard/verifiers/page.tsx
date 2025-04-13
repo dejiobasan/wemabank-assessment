@@ -199,7 +199,7 @@ export default function Page() {
             <input
               type="text"
               placeholder="Name/Phone no/ Location"
-              className="bg-white shadow appearance-none border rounded py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-white shadow placeholder:text-sm appearance-none border rounded py-2 px-6 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
               value={searchTerm}
               onChange={handleSearch}
             />
@@ -207,7 +207,7 @@ export default function Page() {
               <MagnifyingGlassIcon className="h-5 w-5" />
             </div>
           </div>
-          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center">
+          <button className="bg-blue-500 hover:bg-blue-400 text-white text-sm py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center">
             <PlusIcon className="h-5 w-5 mr-2" />
             Add New Verifier
           </button>
@@ -229,25 +229,25 @@ export default function Page() {
                     onChange={handleSelectAll}
                   />
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   First Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Last Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Phone Number
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Partner
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Location
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider flex items-center justify-end">
+                <th className="px-6 py-3 text-right text-xs font-medium text-black uppercase tracking-wider flex items-center justify-end">
                   Actions
                 </th>
               </tr>
