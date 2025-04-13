@@ -1,3 +1,11 @@
+/**
+ * @description mockBusiness contains an array of mock data for registered business on the Xpress Platform
+ * Note: Each mock data is not real and the passwords are not real.
+ * interface Business is for the payload sent to the api server.
+ */
+
+
+
 export interface Business {
   BusinessName: string;
   BusinessEmail: string;

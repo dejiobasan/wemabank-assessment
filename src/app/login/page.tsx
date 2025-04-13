@@ -36,7 +36,7 @@ export default function Page() {
 
     if (res?.ok) {
       toast.success("Welcome!")
-      router.push("/dashboard");
+      router.push("/dashboard/verifiers");
     } else {
       toast.error("Invalid credentials");
     }
