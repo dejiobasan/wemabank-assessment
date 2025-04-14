@@ -50,7 +50,7 @@ export default function Page() {
         <span>New to Xpress Rewards?</span>
         <a
           href="/register"
-          className="px-4 py-2 border border-blue-500 text-blue-500 rounded-md hover:bg-blue-400 hover:text-white transition duration-300"
+          className="px-4 py-2 border font-bold border-blue-500 text-blue-500 rounded-md hover:bg-blue-400 hover:text-white transition duration-300"
         >
           Sign Up
         </a>

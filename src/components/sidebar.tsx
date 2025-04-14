@@ -1,13 +1,12 @@
 "use client";
 
 import {
-  BanknotesIcon,
   UsersIcon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { BellDot, Tags } from "lucide-react";
+import { BellDot, Tags, Banknote } from "lucide-react";
 import Image from "next/image";
 import VerifiersPage from "../app/dashboard/verifiers/page";
 import DealsPage from "../app/dashboard/deals/page"
@@ -22,12 +21,12 @@ const sidebarItems = [
   {
     name: "Deals",
     route: "/dashboard/deals",
-    icon: <Tags size={20} className="m-4" />,
+    icon: <Tags size={20} className="m-4 transform rotate-90" />,
   },
   {
     name: "Transactions",
     route: "/dashboard/transactions",
-    icon: <BanknotesIcon className="w-5 h-5 m-4" />,
+    icon: <Banknote size={20} className="m-4" />,
   },
 ];
 
@@ -75,7 +74,7 @@ export default function Sidebar() {
                 setActive(item.name);
                 router.push(item.route);
               }}
-              className={`flex items-center text-gray-700 font-semibold ${
+              className={`flex items-center text-gray-700 ${
                 active === item.name ? "bg-[#F2FAFF]" : "hover:bg-[#F2FAFF]"
               }`}
             >

@@ -232,7 +232,7 @@ export default function Page() {
                   Choose file
                 </label>
                 <p className="text-gray-500 text-xs mt-2">
-                  Maximum upload size: 10MB (.jpg, .png)
+                  Maximum upload size: 10MB (.jpg)
                 </p>
               </div>
             </div>
@@ -321,6 +321,9 @@ export default function Page() {
                 </label>
               </div>
             </div>
+            <p className="text-xs sm:text-sm text-blue-500 mb-4 sm:mb-6">
+              Contact Person Information
+            </p>
             <div>
               <label
                 htmlFor="contactName"
@@ -366,6 +369,9 @@ export default function Page() {
                 />
               </label>
             </div>
+            <p className="text-xs sm:text-sm text-blue-500 mb-4 sm:mb-6">
+              Password
+            </p>
             <div>
               <label
                 htmlFor="password"
