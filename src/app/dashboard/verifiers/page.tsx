@@ -135,6 +135,7 @@ export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterStatus, setFilterStatus] = useState("All"); // New state for filter
 
   const handleRowSelect = (id: number) => {
     if (selectedRows.includes(id)) {
@@ -162,6 +163,11 @@ export default function Page() {
     setCurrentPage(1);
   };
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterStatus(e.target.value);
+    setCurrentPage(1);
+  };
+
   const goToPreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
@@ -170,11 +176,14 @@ export default function Page() {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
-  const filteredVerifiers = verifiers.filter((verifier) =>
-    Object.values(verifier).some((value) =>
+  const filteredVerifiers = verifiers.filter((verifier) => {
+    const matchesSearch = Object.values(verifier).some((value) =>
       String(value).toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+    );
+    const matchesFilter =
+      filterStatus === "All" || verifier.status === filterStatus;
+    return matchesSearch && matchesFilter;
+  });
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
@@ -186,8 +195,15 @@ export default function Page() {
     <>
       <div className="flex items-center justify-between space-x-8">
         <div className="relative flex items-center">
-          <select className="bg-white w-[212px] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8">
-            <option>All</option>
+          <select
+            className="bg-white w-[212px] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
+            value={filterStatus}
+            onChange={handleFilterChange}
+          >
+            <option value="All">All</option>
+            <option value="Active">Active verifiers</option>
+            <option value="Awaiting approval">Pending verifiers</option>
+            <option value="Deactivated">Deactivated verifiers</option>
           </select>
           <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
             <ChevronDownIcon className="h-5 w-5" />
@@ -229,25 +245,25 @@ export default function Page() {
                     onChange={handleSelectAll}
                   />
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left font-bold text-xs text-black uppercase tracking-wider">
                   First Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
                   Last Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
                   Phone Number
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
                   Partner
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
                   Location
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-bold text-black uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-black uppercase tracking-wider flex items-center justify-end">
+                <th className="px-6 py-3 text-right text-xs font-bold text-black uppercase tracking-wider flex items-center justify-end">
                   Actions
                 </th>
               </tr>
@@ -311,7 +327,7 @@ export default function Page() {
             <span className="text-gray-500 text-sm mr-2">Rows per page:</span>
             <div className="relative">
               <select
-                className="shadow appearance-none border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm w-[89px] pr-8"
+                className="bg-white shadow appearance-none border rounded py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm w-[89px] pr-8"
                 value={rowsPerPage}
                 onChange={handleRowsPerPageChange}
               >
@@ -350,8 +366,6 @@ export default function Page() {
                   {page}
                 </button>
               ))}
-
-            {/* Next Button */}
             <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
