@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { BellDot, Tags } from "lucide-react";
 import Image from "next/image";
 import VerifiersPage from "../app/dashboard/verifiers/page";
+import DealsPage from "../app/dashboard/deals/page"
+import TransactionsPage from "../app/dashboard/transactions/page"
 
 const sidebarItems = [
   {
@@ -46,9 +48,9 @@ export default function Sidebar() {
       case "Verifiers":
         return <VerifiersPage />;
       case "Deals":
-        return <h1>Deals Page</h1>;
+        return <DealsPage />;
       case "Transactions":
-        return <h1>Transactions Page</h1>;
+        return <TransactionsPage />;
       default:
         return null;
     }
@@ -84,8 +86,8 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col">
-        <header className="flex items-center justify-between bg-white shadow-sm p-4">
+      <div className="flex-1 flex flex-col w-full">
+        <header className="flex items-center justify-between bg-white shadow-sm p-4 w-full">
           <div className="flex items-center space-x-2">
             <h1 className="font-bold text-lg">{active}</h1>
             <div className="bg-[#F2FAFF] text-blue-500 text-sm font-medium rounded-full w-6 h-6 flex items-center justify-center">
@@ -108,7 +110,7 @@ export default function Sidebar() {
             </span>
           </div>
         </header>
-        <main className="p-6 flex-1">{renderComponent()}</main>
+        <main className="p-6 flex-1 w-full">{renderComponent()}</main>
       </div>
     </div>
   );

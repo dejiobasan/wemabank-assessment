@@ -132,7 +132,7 @@ export default function Page() {
             onClick={handleLogin}
             className="w-full flex justify-center px-4 py-3 bg-blue-500  text-white rounded-md hover:bg-blue-400"
           >
-            Submit
+            Sign in
           </button>
         </form>
       </div>

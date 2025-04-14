@@ -1,9 +1,10 @@
-import NextAuth from "next-auth";
+
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { mockBusiness } from "../../../../../lib/mockBusiness";
-import "dotenv/config";
+import 'dotenv/config';
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -25,11 +26,13 @@ const handler = NextAuth({
   ],
   session: {
     strategy: 'jwt',
+    maxAge: 180,
   },
   pages: {
     signIn: '/login',
   },
   secret: process.env.JWT_SECRET || "secret",
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
