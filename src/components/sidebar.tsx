@@ -8,9 +8,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BellDot, Tags, Banknote } from "lucide-react";
 import Image from "next/image";
-import VerifiersPage from "../app/dashboard/verifiers/page";
-import DealsPage from "../app/dashboard/deals/page"
-import TransactionsPage from "../app/dashboard/transactions/page"
 
 const sidebarItems = [
   {
@@ -30,7 +27,7 @@ const sidebarItems = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [active, setActive] = useState("");
 
@@ -41,19 +38,6 @@ export default function Sidebar() {
       setActive(activeItem.name);
     }
   }, []);
-
-  const renderComponent = () => {
-    switch (active) {
-      case "Verifiers":
-        return <VerifiersPage />;
-      case "Deals":
-        return <DealsPage />;
-      case "Transactions":
-        return <TransactionsPage />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div className="flex h-screen overflow-x-hidden">
@@ -86,7 +70,7 @@ export default function Sidebar() {
       </div>
 
       <div className="flex-1 flex flex-col w-full">
-        <header className="flex items-center justify-between bg-white shadow-sm p-4 w-full">
+        <nav className="flex items-center justify-between bg-white shadow-sm p-4 w-full">
           <div className="flex items-center space-x-2">
             <h1 className="font-bold text-lg">{active}</h1>
             <div className="bg-[#F2FAFF] text-blue-500 text-sm font-medium rounded-full w-6 h-6 flex items-center justify-center">
@@ -95,7 +79,7 @@ export default function Sidebar() {
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-sm font-medium">
-              <BellDot  color="gray" />
+              <BellDot color="gray" />
             </span>
             <Image
               src="/images/IMG_1850.jpg"
@@ -108,8 +92,8 @@ export default function Sidebar() {
               <ChevronDownIcon className="h-5 w-5" />
             </span>
           </div>
-        </header>
-        <main className="p-6 flex-1 w-full">{renderComponent()}</main>
+        </nav>
+        <main className="p-6 flex-1 w-full h-full">{children}</main>
       </div>
     </div>
   );

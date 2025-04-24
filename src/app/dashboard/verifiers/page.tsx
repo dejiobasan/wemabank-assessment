@@ -9,9 +9,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { initialVerifiers } from "../../../../lib/mockVerifiers";
 
-
-
-
 export default function Page() {
   const [verifiers] = useState(initialVerifiers);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
