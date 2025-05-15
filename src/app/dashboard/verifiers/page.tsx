@@ -72,8 +72,8 @@ export default function Page() {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <>
-      <div className="flex items-center justify-between space-x-8">
+    <div className="w-full">
+      <div className="flex items-center justify-between space-x-8 w-full">
         <div className="relative flex items-center">
           <select
             className="bg-white w-[212px] shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-8"
@@ -109,7 +109,7 @@ export default function Page() {
           </button>
         </div>
       </div>
-      <div className="bg-white shadow-md rounded-lg overflow-x-auto mt-8">
+      <div className="bg-white shadow-md rounded-lg overflow-x-auto mt-8 w-full">
         <div className="max-h-[calc(100vh-270px)] overflow-y-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -260,6 +260,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

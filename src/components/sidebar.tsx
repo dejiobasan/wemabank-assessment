@@ -69,8 +69,8 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col w-full">
-        <nav className="flex items-center justify-between bg-white shadow-sm p-4 w-full">
+      <div className="flex-1 flex flex-col">
+        <nav className="flex items-center justify-between bg-white shadow-sm p-4 w-[1200px]">
           <div className="flex items-center space-x-2">
             <h1 className="font-bold text-lg">{active}</h1>
             <div className="bg-[#F2FAFF] text-blue-500 text-sm font-medium rounded-full w-6 h-6 flex items-center justify-center">
@@ -93,7 +93,11 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
             </span>
           </div>
         </nav>
-        <main className="p-6 flex-1 w-full h-full">{children}</main>
+        <main className="flex-1 w-full h-full overflow-auto">
+          <div className="p-6 h-full w-full">
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   );
